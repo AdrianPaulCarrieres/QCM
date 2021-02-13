@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vue.QCMActivity"
+    android:background="@color/black">
+
+    <ProgressBar
+        android:id="@+id/determinateBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="30"
+        />
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/determinateBar"
+        android:layout_centerHorizontal="true"
+        android:text="@string/temps_restant"
+        android:textColor="@color/purple_200"/>
+    <TextView
+        android:id="@+id/temps_restant"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time"
+        android:layout_centerHorizontal="true"
+        android:text="@string/timer"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/purple_200"
+        android:gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/joueur1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/joueur1"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/determinateBar"
+        android:layout_toRightOf="@id/j1_img"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/j1_img" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/j1_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/determinateBar"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/trump"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:id="@+id/Scorejoueur1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scorej1"
+        android:textStyle="bold"
+        android:textColor="#FF1F11"
+        android:textSize="16sp"
+        android:layout_below="@id/joueur1"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/j1_img"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/j1_img" />
+
+    <TextView
+        android:id="@+id/joueur2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/joueur2"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_below="@id/determinateBar"
+        android:layout_toLeftOf="@id/j2_img"
+        android:layout_marginTop="10dp"
+        android:layout_toStartOf="@id/j2_img" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/j2_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/biden"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"
+        android:layout_below="@id/determinateBar"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/Scorejoueur2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scorej2"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FF1F11"
+        android:layout_below="@id/joueur2"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@id/j2_img"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@id/j2_img" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/question"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/joueur1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="50dp"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:onClick="choixReponse"
+        android:id="@+id/reponse1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
+
+        android:textColor="@color/black"
+        android:text="@string/reponse1"
+        android:layout_below="@id/question"
+        android:textAllCaps="false"
+        tools:ignore="UnusedAttribute" />
+
+    <Button
+        android:onClick="choixReponse"
+        android:id="@+id/reponse2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
+        android:textColor="@color/black"
+        android:text="@string/reponse2"
+        android:layout_below="@id/reponse1"
+        android:textAllCaps="false"
+        tools:ignore="UnusedAttribute" />
+
+    <Button
+        android:onClick="choixReponse"
+        android:id="@+id/reponse3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
+        android:textColor="@color/black"
+        android:text="@string/reponse3"
+        android:layout_below="@id/reponse2"
+        android:textAllCaps="false"
+        tools:ignore="UnusedAttribute" />
+
+    <Button
+        android:onClick="choixReponse"
+        android:id="@+id/reponse4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
+        android:textColor="@color/black"
+        android:text="@string/reponse4"
+        android:layout_below="@id/reponse3"
+        android:textAllCaps="false"
+        tools:ignore="UnusedAttribute" />
+
+
+</RelativeLayout>
