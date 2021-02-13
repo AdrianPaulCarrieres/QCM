@@ -1,4 +1,4 @@
-package fr.lpiot.qcm;
+package fr.lpiot.qcm.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.lpiot.qcm.R;
 import fr.lpiot.qcm.donnee.BaseDeDonnees;
 import fr.lpiot.qcm.donnee.UtilisateurDAO;
 import fr.lpiot.qcm.modele.Utilisateur;

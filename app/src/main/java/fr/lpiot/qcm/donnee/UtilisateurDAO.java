@@ -45,6 +45,7 @@ public class UtilisateurDAO {
             listeUtilisateurs.add(new Utilisateur(id_utilisateur, nom, motDePasse));
         }
         Log.d("userDAO", listeUtilisateurs.get(0).toString());
+        curseur.close();
         return listeUtilisateurs;
     }
 
