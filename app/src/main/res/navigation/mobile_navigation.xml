@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="fr.lpiot.qcm.ui.gallery.GalleryFragment"
+        android:name="fr.lpiot.qcm.ui.gallery.ScoreFragment"
         android:label="@string/menu_score"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_score" />
 
     <fragment
         android:id="@+id/nav_slideshow"

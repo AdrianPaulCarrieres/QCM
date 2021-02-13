@@ -14,20 +14,35 @@ import androidx.lifecycle.ViewModelProvider;
 
 import fr.lpiot.qcm.R;
 
-public class GalleryFragment extends Fragment {
+public class ScoreFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
+    private int scoreActuel = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        View root = inflater.inflate(R.layout.fragment_score, container, false);
+
+        if(getActivity().getIntent().getExtras() != null){
+            scoreActuel = getActivity().getIntent().getExtras().getInt("scoreActuel");
+        }
+        String message;
+        if(scoreActuel == 0){
+            message = "Jouez une partie pour voir votre score ici !";
+        } else {
+            message = "Votre dernier score est de : " + scoreActuel;
+        }
+
+
+
+
+        final TextView textViewDernierScore = root.findViewById(R.id.dernierScore);
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                textViewDernierScore.setText(message);
             }
         });
         return root;

@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel;
 
 public class GalleryViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private final MutableLiveData<String> textScoreActuel;
 
     public GalleryViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        textScoreActuel = new MutableLiveData<>();
+        //textScoreActuel.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {
-        return mText;
+        return textScoreActuel;
     }
 }

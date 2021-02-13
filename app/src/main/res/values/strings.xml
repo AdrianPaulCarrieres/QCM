@@ -32,5 +32,6 @@
     <string name="reponse4">Réponse D</string>
     <string name="timer">30</string>
     <string name="temps_restant">Temps Restant</string>
+    <string name="placeHolderScore">Jouez une partie pour voir votre score ici !</string>
 
 </resources>
