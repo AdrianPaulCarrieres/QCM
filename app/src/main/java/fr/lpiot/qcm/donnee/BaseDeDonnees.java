@@ -41,6 +41,9 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
         String CREATE_TABLE_TOKEN = "create table token(id_token INTEGER PRIMARY KEY, nom_utilisateur TEXT)";
         db.execSQL(CREATE_TABLE_TOKEN);
 
+        String CREATE_TABLE_SCORE = "create table score(id_score INTEGER PRIMARY KEY, nom_utilisateur TEXT, score INTEGER)";
+        db.execSQL(CREATE_TABLE_SCORE);
+
         seed(db);
     }
 
@@ -51,6 +54,15 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
         //Pour sauter l'écran de connexion
         String CONNECT_TEST_USER = "insert into token(id_token, nom_utilisateur) VALUES('1', 'test')";
         db.execSQL(CONNECT_TEST_USER);
+
+        //Scores
+        String SCORE1 = "insert into score(id_score, nom_utilisateur, score) VALUES('1', 'IUT Paris Descartes', '30')";
+        String SCORE2 = "insert into score(id_score, nom_utilisateur, score) VALUES('2', 'LPIOT', '40')";
+        String SCORE3 = "insert into score(id_score, nom_utilisateur, score) VALUES('3', 'Paris', '25')";
+
+        db.execSQL(SCORE1);
+        db.execSQL(SCORE2);
+        db.execSQL(SCORE3);
     }
 
     @Override
