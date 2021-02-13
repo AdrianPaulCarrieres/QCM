@@ -60,4 +60,13 @@ public class UtilisateurDAO {
         return null;
     }
 
+    public void modifierUtilisateur(Utilisateur utilisateur){
+        SQLiteDatabase db = accesseurBaseDeDonnees.getWritableDatabase();
+        SQLiteStatement query = db.compileStatement("UPDATE utilisateur SET nom = ?, mot_de_passe = ? where id_utilisateur = ?");
+        query.bindString(1, utilisateur.getNom());
+        query.bindString(2, utilisateur.getMotDePasse());
+        query.bindString(3, String.valueOf(utilisateur.getId_utilisateur()));
+
+        query.execute();
+    }
 }
