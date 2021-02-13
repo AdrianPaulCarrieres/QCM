@@ -40,6 +40,7 @@ public class NouvelUtilisateurActivity extends AppCompatActivity {
             afficherToast("Les deux champs sont requis.");
         } else{
             accesseurUtilisateur.ajouterUtilisateur(new Utilisateur(nom, motDePasse));
+            afficherToast("Nouvel utilisateur inscrit !");
         }
     }
 

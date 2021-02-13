@@ -52,6 +52,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void buttonClickNaviguerNouvelUtilisateur(View v){
+        Intent intent = new Intent(this, NouvelUtilisateurActivity.class);
+        startActivity(intent);
+    }
+
     private void afficherToast(String message){
         Toast t = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         t.show();
