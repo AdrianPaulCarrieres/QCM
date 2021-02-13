@@ -10,7 +10,7 @@ public class Question {
     public Question(String categorie, String difficulte) {
         this.categorie = categorie;
         this.difficulte = difficulte;
-        listeReponses = new ArrayList<>;
+        listeReponses = new ArrayList<>();
     }
 
     public String getCategorie() {
