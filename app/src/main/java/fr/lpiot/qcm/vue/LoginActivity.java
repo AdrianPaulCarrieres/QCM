@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if(accesseurUtilisateur.getUtilisateurConnecte() != null){
             //Passer au prochain écran -> pour le test on va faire la création
-            //Intent intent = new Intent(this, QCMActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, QCMActivity.class);
+            startActivity(intent);
             Log.i("hi", "general kenobi");
         }
     }
