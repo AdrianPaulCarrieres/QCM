@@ -11,13 +11,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 import fr.lpiot.qcm.R;
 import fr.lpiot.qcm.R.color;
 import fr.lpiot.qcm.donnee.apiCalls.GetDataService;
 import fr.lpiot.qcm.donnee.apiCalls.RetrofitClientInstance;
 import fr.lpiot.qcm.modele.ApiResponse;
 import fr.lpiot.qcm.modele.Question;
-import fr.lpiot.qcm.modele.Reponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +36,7 @@ public class QCMActivity extends AppCompatActivity {
 
 
     //Questions (et réponses) !
-    //Stack<>
+    Stack<Question> stackQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +83,14 @@ public class QCMActivity extends AppCompatActivity {
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 //Questions
                 Question[] questions = response.body().getResults();
-
-
-
+                for(Question question : questions){
+                    stackQuestions.push(question);
+                }
             }
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
-                afficherToast("error");
+                afficherToast("Une erreur est survenue.");
             }
         });
     }
