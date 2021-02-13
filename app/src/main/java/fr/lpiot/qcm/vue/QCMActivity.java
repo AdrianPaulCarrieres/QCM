@@ -1,5 +1,6 @@
 package fr.lpiot.qcm.vue;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -18,10 +19,14 @@ import java.util.Stack;
 
 import fr.lpiot.qcm.R;
 import fr.lpiot.qcm.R.color;
+import fr.lpiot.qcm.donnee.ScoreDAO;
+import fr.lpiot.qcm.donnee.UtilisateurDAO;
 import fr.lpiot.qcm.donnee.apiCalls.GetDataService;
 import fr.lpiot.qcm.donnee.apiCalls.RetrofitClientInstance;
 import fr.lpiot.qcm.modele.ApiResponse;
 import fr.lpiot.qcm.modele.Question;
+import fr.lpiot.qcm.modele.Score;
+import fr.lpiot.qcm.modele.Utilisateur;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +52,10 @@ public class QCMActivity extends AppCompatActivity {
     //Timer
     CountDownTimer timer;
 
+    //Score
+    private ScoreDAO accesseurScore;
+    private UtilisateurDAO accesseurUtilisateur;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +65,8 @@ public class QCMActivity extends AppCompatActivity {
         scorej1 = findViewById(R.id.Scorejoueur1);
         scorej2 = findViewById(R.id.Scorejoueur2);
         textViewQuestion = findViewById(R.id.question);
+
+        accesseurScore = ScoreDAO.getInstance();
 
         boutons = new Button[]{
                 findViewById(R.id.reponse1), findViewById(R.id.reponse2), findViewById(R.id.reponse3), findViewById(R.id.reponse4)
@@ -134,6 +145,10 @@ public class QCMActivity extends AppCompatActivity {
             }.start();
         } else {
             //Passer au score !
+            Utilisateur utilisateur = accesseurUtilisateur.getUtilisateurConnecte();
+            int score = Integer.parseInt(scorej1.getText().toString());
+            accesseurScore.ajouterScore(new Score(utilisateur.getNom(), score));
+            this.finish();
         }
     }
 

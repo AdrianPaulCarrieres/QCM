@@ -56,4 +56,9 @@ public class ScoreDAO {
         query.bindString(2, String.valueOf(score.getScore()));
         query.execute();
     }
+
+    public Score getDernierScore(){
+        listerScores();
+        return listeScores.get(listeScores.size() - 1);
+    }
 }

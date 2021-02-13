@@ -1,11 +1,16 @@
 package fr.lpiot.qcm.vue;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,8 +19,13 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 
 import fr.lpiot.qcm.R;
+import fr.lpiot.qcm.ui.gallery.ScoreFragment;
+import fr.lpiot.qcm.ui.gallery.ScoreViewModel;
 
 public class MenuActivity extends AppCompatActivity {
+
+    //Résultats pour savoir d'où l'on vient
+    static final public int ACTIVITE_QUIZZ = 1;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -58,5 +68,23 @@ public class MenuActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onActivityResult(int activite, int resultat, Intent data) {
+        switch (activite) {
+            case MenuActivity.ACTIVITE_QUIZZ:
+                replaceFragment(ScoreFragment.class);
+                break;
+        }
+        super.onActivityResult(activite, resultat, data);
+    }
+
+    public void replaceFragment(Class<ScoreFragment> fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_view_tag, fragment, new Bundle());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

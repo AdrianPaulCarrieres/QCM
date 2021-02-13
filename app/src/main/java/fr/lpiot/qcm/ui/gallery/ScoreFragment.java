@@ -35,10 +35,8 @@ public class ScoreFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_score, container, false);
 
         accesseurScore = ScoreDAO.getInstance();
+        scoreActuel = accesseurScore.getDernierScore().getScore();
 
-        if(getActivity().getIntent().getExtras() != null){
-            scoreActuel = getActivity().getIntent().getExtras().getInt("scoreActuel");
-        }
         String message;
         if(scoreActuel == 0){
             message = "Jouez une partie pour voir votre score ici !";
