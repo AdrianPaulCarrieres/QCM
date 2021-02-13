@@ -9,5 +9,5 @@ import retrofit2.http.Query;
 
 public interface OpenTDB {
     @GET("/")
-    Call<List<Question>> grouList(@Query("amount") int quantite);
+    Call<List<Question>> getQuestions(@Query("amount") int quantite);
 }
