@@ -16,6 +16,7 @@ import fr.lpiot.qcm.R.color;
 import fr.lpiot.qcm.donnee.apiCalls.GetDataService;
 import fr.lpiot.qcm.donnee.apiCalls.RetrofitClientInstance;
 import fr.lpiot.qcm.modele.ApiResponse;
+import fr.lpiot.qcm.modele.Question;
 import fr.lpiot.qcm.modele.Reponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,7 +79,10 @@ public class QCMActivity extends AppCompatActivity {
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                afficherToast(response.body().getResults()[0].getBonneReponse());
+                //Questions
+                Question[] questions = response.body().getResults();
+
+
 
             }
 

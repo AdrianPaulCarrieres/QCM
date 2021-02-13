@@ -25,9 +25,6 @@ public class Question {
     @Expose
     protected String[] listeFaussesReponses;
 
-    //Pas serialisé par rapport à l'API
-    protected Reponse[] reponses;
-
     public Question(String categorie, String type, String difficulte, String question, String bonneReponse, String[] listeFaussesReponses) {
         this.categorie = categorie;
         this.type = type;
@@ -95,13 +92,5 @@ public class Question {
                 ", bonneReponse=" + bonneReponse +
                 ", listeFaussesReponses=" + Arrays.toString(listeFaussesReponses) +
                 '}';
-    }
-
-    public Reponse[] getReponses() {
-        return reponses;
-    }
-
-    public void setReponses(Reponse[] reponses) {
-        this.reponses = reponses;
     }
 }
