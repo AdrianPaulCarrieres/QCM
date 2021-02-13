@@ -31,6 +31,10 @@ public class QCMActivity extends AppCompatActivity {
     private TextView scorej2;
     private int temps_timer = 30;
 
+
+    //Questions (et réponses) !
+    //Stack<>
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +78,7 @@ public class QCMActivity extends AppCompatActivity {
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                afficherToast(response.body().getResults()[0].getBonneReponse());
 
             }
 

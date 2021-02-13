@@ -1,23 +1,32 @@
 package fr.lpiot.qcm.modele;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Question {
     @SerializedName("category")
+    @Expose
     protected String categorie;
     @SerializedName("type")
+    @Expose
     protected String type;
     @SerializedName("difficulty")
+    @Expose
     protected String difficulte;
     @SerializedName("question")
+    @Expose
     protected String question;
     @SerializedName("correct_answer")
+    @Expose
     protected String bonneReponse;
     @SerializedName("incorrect_answers")
+    @Expose
     protected String[] listeFaussesReponses;
+
+    //Pas serialisé par rapport à l'API
+    protected Reponse[] reponses;
 
     public Question(String categorie, String type, String difficulte, String question, String bonneReponse, String[] listeFaussesReponses) {
         this.categorie = categorie;
@@ -86,5 +95,13 @@ public class Question {
                 ", bonneReponse=" + bonneReponse +
                 ", listeFaussesReponses=" + Arrays.toString(listeFaussesReponses) +
                 '}';
+    }
+
+    public Reponse[] getReponses() {
+        return reponses;
+    }
+
+    public void setReponses(Reponse[] reponses) {
+        this.reponses = reponses;
     }
 }

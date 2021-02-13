@@ -1,12 +1,15 @@
 package fr.lpiot.qcm.modele;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ApiResponse {
 
     @SerializedName("response_code")
+    @Expose
     private int response_code;
     @SerializedName("results")
+    @Expose
     private Question[] results;
 
     public ApiResponse(int response_code, Question[] results) {
