@@ -46,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if(utilisateur.getMotDePasse().equals(motDePasse)){
             afficherToast("Utilisateur connecté");
+            Intent intent = new Intent(this, MenuActivity.class);
+           // Bundle bundle = new Bundle();
+            //intent.putExtras(bundle);
+            startActivity(intent);
         } else {
             afficherToast("Mauvais mot de passe");
         }
