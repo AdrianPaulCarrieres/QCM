@@ -1,4 +1,4 @@
-package fr.lpiot.qcm;
+package fr.lpiot.qcm.vue;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +15,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import fr.lpiot.qcm.R;
 
 public class MenuActivity extends AppCompatActivity {
 

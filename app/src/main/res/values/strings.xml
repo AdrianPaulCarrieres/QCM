@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">QCM</string>
+
     <string name="button">Se connecter</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -12,4 +13,24 @@
     <string name="menu_home">Home</string>
     <string name="menu_score">Scores</string>
     <string name="menu_friends">Friends</string>
+
+    <string name="buttonLogin">Se connecter</string>
+    <string name="buttonCreateAccount">Créer un compte</string>
+
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="identifiant">Identifiant</string>
+
+
+    <string name="joueur2">Joe Biden</string>
+    <string name="joueur1">Donald Trump</string>
+    <string name="scorej1">0</string>
+    <string name="scorej2">0</string>
+    <string name="question">Quelle est la manière la plus efficace de devenir "POTUS" ?</string>
+    <string name="reponse1">En votant aux urnes</string>
+    <string name="reponse2">En prenant d assaut le Capitole</string>
+    <string name="reponse3">En bourrant les urnes</string>
+    <string name="reponse4">You re Fired !</string>
+    <string name="timer">30</string>
+    <string name="temps_restant">Temps Restant</string>
+
 </resources>

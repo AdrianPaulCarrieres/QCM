@@ -9,11 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QCM">
+
         <activity
-            android:name=".MenuActivity"
+            android:name=".vue.MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/Theme.QCM.NoActionBar"></activity>
-        <activity android:name=".LoginActivity">
+            android:theme="@style/Theme.QCM.NoActionBar" />
+
+
+        <activity android:name=".vue.NouvelUtilisateurActivity" />
+        <activity android:name=".vue.QCMActivity" />
+        <activity android:name=".vue.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

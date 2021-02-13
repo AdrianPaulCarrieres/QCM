@@ -45,6 +45,7 @@ public class UtilisateurDAO {
             listeUtilisateurs.add(new Utilisateur(id_utilisateur, nom, motDePasse));
         }
         Log.d("userDAO", listeUtilisateurs.get(0).toString());
+        curseur.close();
         return listeUtilisateurs;
     }
 
@@ -71,5 +72,24 @@ public class UtilisateurDAO {
         query.bindString(3, String.valueOf(utilisateur.getId_utilisateur()));
 
         query.execute();
+    }
+
+    public Utilisateur getUtilisateurConnecte(){
+        Utilisateur utilisateur = null;
+        String LISTER_UTILISATEUR = "SELECT * FROM utilisateur";
+        Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_UTILISATEUR, null);
+
+        int indexId_utilisateur = curseur.getColumnIndex("id_utilisateur");
+        int indexNom = curseur.getColumnIndex("nom");
+        int indexMotDePasse = curseur.getColumnIndex("mot_de_passe");
+
+        for(curseur.moveToFirst(); !curseur.isAfterLast(); curseur.moveToNext()){
+            int id_utilisateur = curseur.getInt(indexId_utilisateur);
+            String nom = curseur.getString(indexNom);
+            String motDePasse = curseur.getString(indexMotDePasse);
+            utilisateur = new Utilisateur(id_utilisateur, nom, motDePasse);
+        }
+        curseur.close();
+        return utilisateur;
     }
 }

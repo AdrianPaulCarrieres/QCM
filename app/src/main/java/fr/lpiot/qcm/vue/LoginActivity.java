@@ -1,4 +1,4 @@
-package fr.lpiot.qcm;
+package fr.lpiot.qcm.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.lpiot.qcm.R;
 import fr.lpiot.qcm.donnee.BaseDeDonnees;
 import fr.lpiot.qcm.donnee.UtilisateurDAO;
 import fr.lpiot.qcm.modele.Utilisateur;
@@ -33,9 +34,16 @@ public class LoginActivity extends AppCompatActivity {
 
         textViewIdentifiant = findViewById(R.id.identifiant);
         textViewMotDePasse = findViewById(R.id.mdp);
+
+        if(accesseurUtilisateur.getUtilisateurConnecte() != null){
+            //Passer au prochain écran -> pour le test on va faire la création
+            Intent intent = new Intent(this, MenuActivity.class);
+            startActivity(intent);
+            Log.i("hi", "general kenobi");
+        }
     }
 
-    public void buttonClick(View v){
+    public void buttonLoginClick(View v){
         String nom = textViewIdentifiant.getText().toString();
         String motDePasse = textViewMotDePasse.getText().toString();
 
@@ -53,6 +61,11 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             afficherToast("Mauvais mot de passe");
         }
+    }
+
+    public void buttonClickNaviguerNouvelUtilisateur(View v){
+        Intent intent = new Intent(this, NouvelUtilisateurActivity.class);
+        startActivity(intent);
     }
 
     private void afficherToast(String message){

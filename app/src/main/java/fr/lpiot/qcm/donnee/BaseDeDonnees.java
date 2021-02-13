@@ -28,19 +28,29 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
 
     @Override
     public void onOpen(SQLiteDatabase db) {
-        String DELETE = "delete from utilisateur where 1 = 1";
+        /*String DELETE = "delete from utilisateur where 1 = 1";
         db.execSQL(DELETE);
-
-        String INSERT_TEST_USER = "insert into utilisateur(id_utilisateur, nom, mot_de_passe) VALUES('1', 'test', 'test')";
-        db.execSQL(INSERT_TEST_USER);
+         */
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "create table utilisateur(id_utilisateur INTEGER PRIMARY KEY, nom TEXT, mot_de_passe TEXT)";
-        db.execSQL(CREATE_TABLE);
+        String CREATE_TABLE_UTILISATEUR = "create table utilisateur(id_utilisateur INTEGER PRIMARY KEY, nom TEXT, mot_de_passe TEXT)";
+        db.execSQL(CREATE_TABLE_UTILISATEUR);
 
+        String CREATE_TABLE_TOKEN = "create table token(id_token INTEGER PRIMARY KEY, nom_utilisateur TEXT)";
+        db.execSQL(CREATE_TABLE_TOKEN);
 
+        seed(db);
+    }
+
+    private void seed(SQLiteDatabase db) {
+        String INSERT_TEST_USER = "insert into utilisateur(id_utilisateur, nom, mot_de_passe) VALUES('1', 'test', 'test')";
+        db.execSQL(INSERT_TEST_USER);
+
+        //Pour sauter l'écran de connexion
+        String CONNECT_TEST_USER = "insert into token(id_token, nom_utilisateur) VALUES('1', 'test')";
+        db.execSQL(CONNECT_TEST_USER);
     }
 
     @Override
