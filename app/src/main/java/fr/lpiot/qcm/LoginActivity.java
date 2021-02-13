@@ -2,6 +2,7 @@ package fr.lpiot.qcm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +16,8 @@ import fr.lpiot.qcm.modele.Utilisateur;
 public class LoginActivity extends AppCompatActivity {
 
     //View
-    protected TextView textViewIdentifiant = findViewById(R.id.identifiant);
-    protected TextView textViewMotDePasse = findViewById(R.id.mdp);
+    protected TextView textViewIdentifiant;
+    protected TextView textViewMotDePasse;
 
     //UtilisateurDAO
     protected UtilisateurDAO accesseurUtilisateur;
@@ -26,12 +27,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //BaseDeDonnees.getInstance(getApplicationContext());
+        BaseDeDonnees.getInstance(getApplicationContext());
 
-        //accesseurUtilisateur = UtilisateurDAO.getInstance();
+        accesseurUtilisateur = UtilisateurDAO.getInstance();
+
+        textViewIdentifiant = findViewById(R.id.identifiant);
+        textViewMotDePasse = findViewById(R.id.mdp);
     }
 
-    private void buttonClick(View v){
+    public void buttonClick(View v){
         String nom = textViewIdentifiant.getText().toString();
         String motDePasse = textViewMotDePasse.getText().toString();
 
@@ -46,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             afficherToast("Mauvais mot de passe");
         }
     }
-
 
     private void afficherToast(String message){
         Toast t = Toast.makeText(this, message, Toast.LENGTH_SHORT);

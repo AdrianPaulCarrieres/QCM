@@ -40,4 +40,13 @@ public class Utilisateur {
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id_utilisateur=" + id_utilisateur +
+                ", nom='" + nom + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
+                '}';
+    }
 }
