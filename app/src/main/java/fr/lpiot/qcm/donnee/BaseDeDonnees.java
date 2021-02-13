@@ -28,11 +28,9 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
 
     @Override
     public void onOpen(SQLiteDatabase db) {
-        String DELETE = "delete from utilisateur where 1 = 1";
+        /*String DELETE = "delete from utilisateur where 1 = 1";
         db.execSQL(DELETE);
-
-        String INSERT_TEST_USER = "insert into utilisateur(id_utilisateur, nom, mot_de_passe) VALUES('1', 'test', 'test')";
-        db.execSQL(INSERT_TEST_USER);
+         */
     }
 
     @Override
@@ -40,7 +38,8 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
         String CREATE_TABLE = "create table utilisateur(id_utilisateur INTEGER PRIMARY KEY, nom TEXT, mot_de_passe TEXT)";
         db.execSQL(CREATE_TABLE);
 
-
+        String INSERT_TEST_USER = "insert into utilisateur(id_utilisateur, nom, mot_de_passe) VALUES('1', 'test', 'test')";
+        db.execSQL(INSERT_TEST_USER);
     }
 
     @Override
