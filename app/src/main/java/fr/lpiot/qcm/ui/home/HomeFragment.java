@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Commencer le quizz
-                Intent intent = new Intent(this, QCMActivity.class);
+                Intent intent = new Intent(getActivity(), QCMActivity.class);
                 startActivity(intent);
             }
         });
