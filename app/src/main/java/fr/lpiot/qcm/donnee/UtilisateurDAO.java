@@ -3,6 +3,7 @@ package fr.lpiot.qcm.donnee;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,9 +23,10 @@ public class UtilisateurDAO {
         return instance;
     }
 
-    private UtilisateurDAO(){
+    public UtilisateurDAO(){
         accesseurBaseDeDonnees = BaseDeDonnees.getInstance();
         listeUtilisateurs = new ArrayList<>();
+        listerUtilisateurs();
     }
 
     public List<Utilisateur> listerUtilisateurs(){
@@ -42,6 +44,7 @@ public class UtilisateurDAO {
             String motDePasse = curseur.getString(indexMotDePasse);
             listeUtilisateurs.add(new Utilisateur(id_utilisateur, nom, motDePasse));
         }
+        Log.d("userDAO", listeUtilisateurs.get(0).toString());
         return listeUtilisateurs;
     }
 
@@ -55,7 +58,7 @@ public class UtilisateurDAO {
 
     public Utilisateur chercherUtilisateurParNom(String nom){
         for(Utilisateur utilisateurRecherche : this.listeUtilisateurs){
-            if(utilisateurRecherche.getNom() == nom) return utilisateurRecherche;
+            if(utilisateurRecherche.getNom().equals(nom)) return utilisateurRecherche;
         }
         return null;
     }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QCM</string>
+    <string name="button">Se connecter</string>
 </resources>
