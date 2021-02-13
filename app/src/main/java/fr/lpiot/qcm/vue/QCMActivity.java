@@ -11,10 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
 
@@ -75,7 +73,7 @@ public class QCMActivity extends AppCompatActivity {
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 //Questions
                 Question[] questions = response.body().getResults();
-                for(Question question : questions){
+                for (Question question : questions) {
                     stackQuestions.push(question);
                 }
 
@@ -89,49 +87,54 @@ public class QCMActivity extends AppCompatActivity {
         });
     }
 
-    private void nouvelleQuestion(){
-        if(timer != null){
+    private void nouvelleQuestion() {
+        if (timer != null) {
             timer.cancel();
             temps_timer = 30;
             pbar.setProgress(0);
         }
-        questionActuelle = stackQuestions.pop();
-        reponses = new ArrayList<>();
 
-        reponses.add(questionActuelle.getBonneReponse());
-        reponses.addAll(Arrays.asList(questionActuelle.getListeFaussesReponses()));
-        Collections.shuffle(reponses);
+        if (!stackQuestions.empty()) {
+            questionActuelle = stackQuestions.pop();
+            reponses = new ArrayList<>();
 
-        for(int i = 0; i < reponses.size(); i++){
-            boutons[i].setText(reponses.get(i));
+            reponses.add(questionActuelle.getBonneReponse());
+            reponses.addAll(Arrays.asList(questionActuelle.getListeFaussesReponses()));
+            Collections.shuffle(reponses);
+
+            for (int i = 0; i < reponses.size(); i++) {
+                boutons[i].setText(reponses.get(i));
+            }
+
+            textViewQuestion.setText(questionActuelle.getQuestion());
+
+            timer = new CountDownTimer(30000, 1000) {
+                String s;
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    pbar.incrementProgressBy(1);
+                    --temps_timer;
+                    s = "" + temps_timer;
+                    tps_restant.setText(s);
+                }
+
+                @Override
+                public void onFinish() {
+                    pbar.incrementProgressBy(1);
+                    temps_timer = 30;
+                    s = "" + temps_timer;
+                    tps_restant.setText(s);
+                    Toast t = Toast.makeText(getApplicationContext(), "Too slow !", Toast.LENGTH_LONG);
+                    t.show();
+                    nouvelleQuestion();
+                }
+
+
+            }.start();
+        } else {
+            //Passer au score !
         }
-
-        textViewQuestion.setText(questionActuelle.getQuestion());
-
-        timer = new CountDownTimer(30000, 1000) {
-            String s;
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                pbar.incrementProgressBy(1);
-                --temps_timer;
-                s = "" + temps_timer;
-                tps_restant.setText(s);
-            }
-
-            @Override
-            public void onFinish() {
-                pbar.incrementProgressBy(1);
-                temps_timer = 30;
-                s = "" + temps_timer;
-                tps_restant.setText(s);
-                Toast t = Toast.makeText(getApplicationContext(), "Too slow !", Toast.LENGTH_LONG);
-                t.show();
-                nouvelleQuestion();
-            }
-
-
-        }.start();
     }
 
     public void choixReponse(View v) {
