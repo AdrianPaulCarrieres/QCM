@@ -10,5 +10,5 @@ import retrofit2.http.Query;
 
 public interface GetDataService {
     @GET("api.php")
-    Call<ApiResponse> getQuestions(@Query("amount") int quantite);
+    Call<ApiResponse> getQuestions(@Query("amount") int quantite, @Query("type") String type);
 }

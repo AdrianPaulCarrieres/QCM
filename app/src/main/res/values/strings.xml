@@ -25,11 +25,11 @@
     <string name="joueur1">Donald Trump</string>
     <string name="scorej1">0</string>
     <string name="scorej2">0</string>
-    <string name="question">Quelle est la manière la plus efficace de devenir "POTUS" ?</string>
-    <string name="reponse1">En votant aux urnes</string>
-    <string name="reponse2">En prenant d assaut le Capitole</string>
-    <string name="reponse3">En bourrant les urnes</string>
-    <string name="reponse4">You re Fired !</string>
+    <string name="question">Superbe question</string>
+    <string name="reponse1">Réponse A</string>
+    <string name="reponse2">Réponse B</string>
+    <string name="reponse3">Réponse C</string>
+    <string name="reponse4">Réponse D</string>
     <string name="timer">30</string>
     <string name="temps_restant">Temps Restant</string>
 

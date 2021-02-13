@@ -11,7 +11,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Stack;
 
 import fr.lpiot.qcm.R;
@@ -27,16 +31,21 @@ import retrofit2.Response;
 public class QCMActivity extends AppCompatActivity {
 
     static final private int NOMBRE_QUESTIONS = 5;
+    static final private String TYPE_QUESTIONS = "multiple";
 
     private ProgressBar pbar;
     private TextView tps_restant;
     private TextView scorej1;
     private TextView scorej2;
+    private TextView textViewQuestion;
     private int temps_timer = 30;
 
 
     //Questions (et réponses) !
-    Stack<Question> stackQuestions;
+    private Stack<Question> stackQuestions = new Stack<>();
+    private Question questionActuelle;
+    private ArrayList<String> reponses;
+    private Button[] boutons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,12 @@ public class QCMActivity extends AppCompatActivity {
         tps_restant = findViewById(R.id.temps_restant);
         scorej1 = findViewById(R.id.Scorejoueur1);
         scorej2 = findViewById(R.id.Scorejoueur2);
+        textViewQuestion = findViewById(R.id.question);
+
+        boutons = new Button[]{
+                findViewById(R.id.reponse1), findViewById(R.id.reponse2), findViewById(R.id.reponse3), findViewById(R.id.reponse4)
+        };
+
         CountDownTimer timer = new CountDownTimer(30000, 1000) {
             String s;
 
@@ -77,7 +92,7 @@ public class QCMActivity extends AppCompatActivity {
     private void callApi() {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
 
-        Call<ApiResponse> call = service.getQuestions(NOMBRE_QUESTIONS);
+        Call<ApiResponse> call = service.getQuestions(NOMBRE_QUESTIONS, TYPE_QUESTIONS);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -86,6 +101,8 @@ public class QCMActivity extends AppCompatActivity {
                 for(Question question : questions){
                     stackQuestions.push(question);
                 }
+
+                nouvelleQuestion();
             }
 
             @Override
@@ -95,15 +112,43 @@ public class QCMActivity extends AppCompatActivity {
         });
     }
 
+    private void nouvelleQuestion(){
+        questionActuelle = stackQuestions.pop();
+        reponses = new ArrayList<>();
+
+        reponses.add(questionActuelle.getBonneReponse());
+        reponses.addAll(Arrays.asList(questionActuelle.getListeFaussesReponses()));
+        Collections.shuffle(reponses);
+
+        for(int i = 0; i < reponses.size(); i++){
+            boutons[i].setText(reponses.get(i));
+        }
+
+        textViewQuestion.setText(questionActuelle.getQuestion());
+    }
+
     public void choixReponse(View v) {
-        if (((Button) v).getText() == getResources().getString(R.string.reponse4)) {
+        if (((Button) v).getText() == questionActuelle.getBonneReponse()) {
             v.setBackgroundColor(v.getContext().getResources().getColor(color.green));
-            //à voir si on fait plus compliqué après
             String score = "" + temps_timer;
             scorej2.setText(score);
-        } else
+        } else {
             v.setBackgroundColor(v.getContext().getResources().getColor(color.red));
+        }
 
+        CountDownTimer timer = new CountDownTimer(1000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                v.setBackgroundColor(v.getContext().getResources().getColor(color.white));
+                nouvelleQuestion();
+            }
+        };
+        timer.start();
     }
 
     private void afficherToast(String message) {
