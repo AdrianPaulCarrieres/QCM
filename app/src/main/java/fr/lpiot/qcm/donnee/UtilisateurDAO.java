@@ -44,4 +44,20 @@ public class UtilisateurDAO {
         }
         return listeUtilisateurs;
     }
+
+    public void ajouterUtilisateur(Utilisateur utilisateur){
+        SQLiteDatabase db = accesseurBaseDeDonnees.getWritableDatabase();
+        SQLiteStatement query = db.compileStatement("INSERT INTO utilisateur(id_utilisateur, nom ,mot_de_passe) VALUES(null, ?, ?)");
+        query.bindString(1, utilisateur.getNom());
+        query.bindString(2, utilisateur.getMotDePasse());
+        query.execute();
+    }
+
+    public Utilisateur chercherUtilisateurParNom(String nom){
+        for(Utilisateur utilisateurRecherche : this.listeUtilisateurs){
+            if(utilisateurRecherche.getNom() == nom) return utilisateurRecherche;
+        }
+        return null;
+    }
+
 }
