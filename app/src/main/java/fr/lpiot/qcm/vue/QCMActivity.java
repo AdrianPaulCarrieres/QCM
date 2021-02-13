@@ -40,12 +40,14 @@ public class QCMActivity extends AppCompatActivity {
     private TextView textViewQuestion;
     private int temps_timer = 30;
 
-
     //Questions (et réponses) !
     private Stack<Question> stackQuestions = new Stack<>();
     private Question questionActuelle;
     private ArrayList<String> reponses;
     private Button[] boutons;
+
+    //Timer
+    CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,32 +63,7 @@ public class QCMActivity extends AppCompatActivity {
                 findViewById(R.id.reponse1), findViewById(R.id.reponse2), findViewById(R.id.reponse3), findViewById(R.id.reponse4)
         };
 
-        CountDownTimer timer = new CountDownTimer(30000, 1000) {
-            String s;
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                pbar.incrementProgressBy(1);
-                --temps_timer;
-                s = "" + temps_timer;
-                tps_restant.setText(s);
-            }
-
-            @Override
-            public void onFinish() {
-
-                pbar.incrementProgressBy(1);
-                --temps_timer;
-                s = "" + temps_timer;
-                tps_restant.setText(s);
-                Toast t = Toast.makeText(getApplicationContext(), "Too slow !", Toast.LENGTH_LONG);
-                t.show();
-            }
-        };
-
         callApi();
-
-        timer.start();
     }
 
     private void callApi() {
@@ -113,6 +90,11 @@ public class QCMActivity extends AppCompatActivity {
     }
 
     private void nouvelleQuestion(){
+        if(timer != null){
+            timer.cancel();
+            temps_timer = 30;
+            pbar.setProgress(0);
+        }
         questionActuelle = stackQuestions.pop();
         reponses = new ArrayList<>();
 
@@ -125,6 +107,31 @@ public class QCMActivity extends AppCompatActivity {
         }
 
         textViewQuestion.setText(questionActuelle.getQuestion());
+
+        timer = new CountDownTimer(30000, 1000) {
+            String s;
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                pbar.incrementProgressBy(1);
+                --temps_timer;
+                s = "" + temps_timer;
+                tps_restant.setText(s);
+            }
+
+            @Override
+            public void onFinish() {
+                pbar.incrementProgressBy(1);
+                temps_timer = 30;
+                s = "" + temps_timer;
+                tps_restant.setText(s);
+                Toast t = Toast.makeText(getApplicationContext(), "Too slow !", Toast.LENGTH_LONG);
+                t.show();
+                nouvelleQuestion();
+            }
+
+
+        }.start();
     }
 
     public void choixReponse(View v) {
