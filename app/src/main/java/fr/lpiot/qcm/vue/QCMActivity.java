@@ -23,6 +23,8 @@ import retrofit2.Response;
 
 public class QCMActivity extends AppCompatActivity {
 
+    static final private int NOMBRE_QUESTIONS = 5;
+
     private ProgressBar pbar;
     private TextView tps_restant;
     private TextView scorej1;
@@ -68,16 +70,11 @@ public class QCMActivity extends AppCompatActivity {
     private void callApi() {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
 
-        Call<ApiResponse> call = service.getQuestions(5);
+        Call<ApiResponse> call = service.getQuestions(NOMBRE_QUESTIONS);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                String reponse = response.body().getResults()[0].getBonneReponse();
-                String[] wrong_answer = response.body().getResults()[0].getListeFaussesReponses();
-                Log.d("QCM activity", reponse.toString());
-                afficherToast(reponse.toString());
-                //Log.d("QCM Activity", response.body().getResults()[0].getCategorie());
-                //afficherToast(response.body().getResults()[0].getListeReponses()[0].toString());
+
             }
 
             @Override
