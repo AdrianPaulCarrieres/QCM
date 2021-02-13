@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">QCM</string>
-    <string name="button">Se connecter</string>
+    <string name="buttonLogin">Se connecter</string>
+    <string name="buttonCreateAccount">Créer un compte</string>
+
     <string name="mot_de_passe">Mot de passe</string>
     <string name="identifiant">Identifiant</string>
 

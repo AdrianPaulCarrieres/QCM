@@ -50,8 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="50dp"
-        android:onClick="buttonLoginClick"
-        android:text="@string/buttonLogin">
+        android:onClick="buttonAjouterNouvelUtilisateur"
+        android:text="@string/buttonCreateAccount">
 
     </Button>
 

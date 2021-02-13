@@ -2,7 +2,6 @@ package fr.lpiot.qcm.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,11 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.lpiot.qcm.R;
-import fr.lpiot.qcm.donnee.BaseDeDonnees;
 import fr.lpiot.qcm.donnee.UtilisateurDAO;
 import fr.lpiot.qcm.modele.Utilisateur;
 
-public class LoginActivity extends AppCompatActivity {
+public class NouvelUtilisateurActivity extends AppCompatActivity {
 
     //View
     protected TextView textViewIdentifiant;
@@ -26,9 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        BaseDeDonnees.getInstance(getApplicationContext());
+        setContentView(R.layout.activity_nouvel_utilisateur);
 
         accesseurUtilisateur = UtilisateurDAO.getInstance();
 
@@ -36,19 +32,14 @@ public class LoginActivity extends AppCompatActivity {
         textViewMotDePasse = findViewById(R.id.mdp);
     }
 
-    public void buttonLoginClick(View v){
+    public void buttonAjouterNouvelUtilisateur(View v){
         String nom = textViewIdentifiant.getText().toString();
         String motDePasse = textViewMotDePasse.getText().toString();
 
-        Utilisateur utilisateur = accesseurUtilisateur.chercherUtilisateurParNom(nom);
-
-        if(utilisateur == null) {
-            afficherToast("Mauvais identifiant");
-        }
-        else if(utilisateur.getMotDePasse().equals(motDePasse)){
-            afficherToast("Utilisateur connecté");
-        } else {
-            afficherToast("Mauvais mot de passe");
+        if(nom == null || motDePasse == null){
+            afficherToast("Les deux champs sont requis.");
+        } else{
+            accesseurUtilisateur.ajouterUtilisateur(new Utilisateur(nom, motDePasse));
         }
     }
 
