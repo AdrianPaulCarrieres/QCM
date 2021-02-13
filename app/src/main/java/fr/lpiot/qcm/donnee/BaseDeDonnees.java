@@ -29,19 +29,18 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
     @Override
     public void onOpen(SQLiteDatabase db) {
         /*String DELETE = "delete from jeu where 1 = 1";
-        db.execSQL(DELETE);
-        String INSERT_1 = "insert into jeu(id_jeu, titre, plateforme, alarmeActivee) VALUES('1','Dofus', 'PC', 0)";
-        String INSERT_2 = "insert into jeu(id_jeu, titre, plateforme, alarmeActivee) VALUES('2','Halo', 'XBox', 0)";
-        String INSERT_3 = "insert into jeu(id_jeu, titre, plateforme, alarmeActivee) VALUES('3','Detroit Become Human', 'PS4', 0)";
-        db.execSQL(INSERT_1);
-        db.execSQL(INSERT_2);
-        db.execSQL(INSERT_3);*/
+        db.execSQL(DELETE);*/
+
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "create table jeu(id_jeu INTEGER PRIMARY KEY, titre TEXT, plateforme TEXT)";
+        String CREATE_TABLE = "create table user(id_user INTEGER PRIMARY KEY, username TEXT, password TEXT)";
         db.execSQL(CREATE_TABLE);
+
+        String INSERT_TEST_USER = "insert into user(id_user, username, password) VALUE('1', 'test', 'test')";
+        db.execSQL(INSERT_TEST_USER);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
         // TODO Auto-generated method stub
         //String DETRUIRE_TABLE = "drop table jeu";
         //db.execSQL(DETRUIRE_TABLE);
-        String CREER_TABLE = "create table jeu(id_jeu INTEGER PRIMARY KEY, titre TEXT, plateforme TEXT, dateLive TEXT, alarmeActivee INTEGER)";
-        db.execSQL(CREER_TABLE);
+        //String CREER_TABLE = "create table jeu(id_jeu INTEGER PRIMARY KEY, titre TEXT, plateforme TEXT, dateLive TEXT, alarmeActivee INTEGER)";
+        //db.execSQL(CREER_TABLE);
     }
 }
