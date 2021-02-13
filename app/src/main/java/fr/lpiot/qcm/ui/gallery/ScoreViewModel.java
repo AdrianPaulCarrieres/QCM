@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class ScoreViewModel extends ViewModel {
 
     private final MutableLiveData<String> textScoreActuel;
 
-    public GalleryViewModel() {
+    public ScoreViewModel() {
         textScoreActuel = new MutableLiveData<>();
         //textScoreActuel.setValue("This is gallery fragment");
     }

@@ -40,4 +40,13 @@ public class Score {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "id_score=" + id_score +
+                ", nomUtilisateur='" + nomUtilisateur + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }

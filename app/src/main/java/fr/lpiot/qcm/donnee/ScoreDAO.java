@@ -15,7 +15,7 @@ public class ScoreDAO {
 
     private static ScoreDAO instance = null;
     protected BaseDeDonnees accesseurBaseDeDonnees;
-    protected List<Score> listeScores;
+    protected ArrayList<Score> listeScores;
 
     public static ScoreDAO getInstance() {
         if (instance == null) {
@@ -30,7 +30,7 @@ public class ScoreDAO {
         listerScores();
     }
 
-    public List<Score> listerScores() {
+    public ArrayList<Score> listerScores() {
         String LISTER_SCORE = "SELECT * FROM score";
         Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_SCORE, null);
         this.listeScores.clear();
