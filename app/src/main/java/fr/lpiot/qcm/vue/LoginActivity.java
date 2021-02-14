@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if(utilisateur.getMotDePasse().equals(motDePasse)){
             afficherToast("Utilisateur connecté");
+            accesseurUtilisateur.ajouterToken(utilisateur);
             naviguerVersMenu(utilisateur.getNom());
         } else {
             afficherToast("Mauvais mot de passe");

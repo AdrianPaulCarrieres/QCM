@@ -92,4 +92,11 @@ public class UtilisateurDAO {
         curseur.close();
         return utilisateur;
     }
+
+    public void ajouterToken(Utilisateur utilisateur){
+        SQLiteDatabase db = accesseurBaseDeDonnees.getWritableDatabase();
+        SQLiteStatement query = db.compileStatement("INSERT INTO token(id_token, nom_utilisateur) VALUES(null, ?)");
+        query.bindString(1, utilisateur.getNom());
+        query.execute();
+    }
 }

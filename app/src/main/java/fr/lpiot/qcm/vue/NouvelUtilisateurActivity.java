@@ -2,6 +2,7 @@ package fr.lpiot.qcm.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,8 +40,11 @@ public class NouvelUtilisateurActivity extends AppCompatActivity {
         if(nom == null || motDePasse == null){
             afficherToast("Les deux champs sont requis.");
         } else{
-            accesseurUtilisateur.ajouterUtilisateur(new Utilisateur(nom, motDePasse));
+            Utilisateur utilisateur = new Utilisateur(nom, motDePasse);
+            accesseurUtilisateur.ajouterUtilisateur(utilisateur);
             afficherToast("Nouvel utilisateur inscrit !");
+            accesseurUtilisateur.ajouterToken(utilisateur);
+            naviguerVersMenu(utilisateur.getNom());
         }
     }
 
@@ -48,5 +52,12 @@ public class NouvelUtilisateurActivity extends AppCompatActivity {
         Toast t = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         t.show();
         Log.i("login", "toasted message : " + message);
+    }
+
+    private void naviguerVersMenu(String nomUtilisateur){
+        //Passer au prochain écran -> pour le test on va faire la création
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("nomUtilisateur", nomUtilisateur);
+        startActivity(intent);
     }
 }
