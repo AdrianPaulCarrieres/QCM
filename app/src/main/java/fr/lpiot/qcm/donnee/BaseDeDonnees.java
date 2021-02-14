@@ -52,8 +52,8 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
         db.execSQL(INSERT_TEST_USER);
 
         //Pour sauter l'écran de connexion, à utiliser quand on dev !
-        String CONNECT_TEST_USER = "insert into token(id_token, nom_utilisateur) VALUES('1', 'test')";
-        db.execSQL(CONNECT_TEST_USER);
+        //String CONNECT_TEST_USER = "insert into token(id_token, nom_utilisateur) VALUES('1', 'test')";
+        //db.execSQL(CONNECT_TEST_USER);
 
         //Scores
         String SCORE1 = "insert into score(id_score, nom_utilisateur, score) VALUES('1', 'IUT Paris Descartes', '30')";
