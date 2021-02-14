@@ -54,6 +54,9 @@ public class QCMActivity extends AppCompatActivity {
     //Score
     private int score = 0;
 
+    //Utilisateur
+    private String nomUtilisateur;
+
     //Persistence
     private ScoreDAO accesseurScore;
     private UtilisateurDAO accesseurUtilisateur;
@@ -72,7 +75,11 @@ public class QCMActivity extends AppCompatActivity {
 
         accesseurScore = ScoreDAO.getInstance();
         accesseurUtilisateur = UtilisateurDAO.getInstance();
-        joueur.setText(accesseurUtilisateur.getUtilisateurConnecte().getNom());
+
+        Bundle parametres = this.getIntent().getExtras();
+        nomUtilisateur = parametres.get("nomUtilisateur").toString();
+
+        joueur.setText(nomUtilisateur);
         boutons = new Button[]{
                 findViewById(R.id.reponse1), findViewById(R.id.reponse2), findViewById(R.id.reponse3), findViewById(R.id.reponse4)
         };
@@ -150,8 +157,7 @@ public class QCMActivity extends AppCompatActivity {
             }.start();
         } else {
             //Passer au score !
-            Utilisateur utilisateur = accesseurUtilisateur.getUtilisateurConnecte();
-            accesseurScore.ajouterScore(new Score(utilisateur.getNom(), score));
+            accesseurScore.ajouterScore(new Score(nomUtilisateur, score));
             this.finish();
         }
     }
