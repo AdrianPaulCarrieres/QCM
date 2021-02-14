@@ -156,8 +156,6 @@ public class QCMActivity extends AppCompatActivity {
         } else {
             //Passer au score !
             accesseurScore.ajouterScore(new Score(nomUtilisateur, score));
-            Utilisateur utilisateur = accesseurUtilisateur.getUtilisateurConnecte();
-            accesseurScore.ajouterScore(new Score(utilisateur.getNom(), score));
 
             CountDownTimer timerFinal = new CountDownTimer(1000, 1000) {
 
