@@ -31,7 +31,7 @@ public class ScoreDAO {
     }
 
     public ArrayList<Score> listerScores() {
-        String LISTER_SCORE = "SELECT * FROM score ORDER BY score DESC";
+        String LISTER_SCORE = "SELECT * FROM score ORDER BY score DESC LIMIT 8";
         Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_SCORE, null);
         this.listeScores.clear();
 

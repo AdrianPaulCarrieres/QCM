@@ -95,7 +95,7 @@
     <Button
         android:id="@+id/reponse1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/question"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="5dp"
@@ -109,7 +109,7 @@
     <Button
         android:id="@+id/reponse2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/reponse1"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="5dp"
@@ -123,7 +123,7 @@
     <Button
         android:id="@+id/reponse3"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/reponse2"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="5dp"
@@ -137,7 +137,7 @@
     <Button
         android:id="@+id/reponse4"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/reponse3"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="5dp"
