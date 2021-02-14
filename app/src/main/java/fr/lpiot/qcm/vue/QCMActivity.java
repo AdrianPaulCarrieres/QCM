@@ -141,8 +141,7 @@ public class QCMActivity extends AppCompatActivity {
                     temps_timer = 30;
                     s = "" + temps_timer;
                     tps_restant.setText(s);
-                    Toast t = Toast.makeText(getApplicationContext(), "Too slow !", Toast.LENGTH_LONG);
-                    t.show();
+                    afficherToast("Too slow");
                     nouvelleQuestion();
                 }
 
@@ -152,6 +151,21 @@ public class QCMActivity extends AppCompatActivity {
             //Passer au score !
             Utilisateur utilisateur = accesseurUtilisateur.getUtilisateurConnecte();
             accesseurScore.ajouterScore(new Score(utilisateur.getNom(), score));
+
+            CountDownTimer timerFinal = new CountDownTimer(1000, 1000) {
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+                }
+
+                @Override
+                public void onFinish() {
+                   afficherToast("Your score : "+score);
+                }
+            }.start();
+
+
+
             this.finish();
         }
     }
