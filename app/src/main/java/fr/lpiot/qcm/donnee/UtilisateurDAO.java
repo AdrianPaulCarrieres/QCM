@@ -55,6 +55,8 @@ public class UtilisateurDAO {
         query.bindString(1, utilisateur.getNom());
         query.bindString(2, utilisateur.getMotDePasse());
         query.execute();
+
+        listerUtilisateurs();
     }
 
     public Utilisateur chercherUtilisateurParNom(String nom){
