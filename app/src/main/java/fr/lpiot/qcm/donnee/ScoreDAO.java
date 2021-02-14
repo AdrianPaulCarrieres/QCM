@@ -31,7 +31,7 @@ public class ScoreDAO {
     }
 
     public ArrayList<Score> listerScores() {
-        String LISTER_SCORE = "SELECT * FROM score";
+        String LISTER_SCORE = "SELECT * FROM score ORDER BY score DESC";
         Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_SCORE, null);
         this.listeScores.clear();
 
@@ -55,10 +55,5 @@ public class ScoreDAO {
         query.bindString(1, score.getNomUtilisateur());
         query.bindString(2, String.valueOf(score.getScore()));
         query.execute();
-    }
-
-    public Score getDernierScore(){
-        listerScores();
-        return listeScores.get(listeScores.size() - 1);
     }
 }

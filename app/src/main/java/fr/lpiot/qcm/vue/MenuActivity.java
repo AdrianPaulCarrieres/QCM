@@ -2,7 +2,9 @@ package fr.lpiot.qcm.vue;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,20 +31,20 @@ public class MenuActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    private String nomUtilisateur;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+
+        Bundle parametres = this.getIntent().getExtras();
+        nomUtilisateur = parametres.get("nomUtilisateur").toString();
+        afficherToast("Bienvenue " + nomUtilisateur);
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -86,5 +88,11 @@ public class MenuActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container_view_tag, fragment, new Bundle());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    private void afficherToast(String message){
+        Toast t = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        t.show();
+        Log.i("login", "toasted message : " + message);
     }
 }

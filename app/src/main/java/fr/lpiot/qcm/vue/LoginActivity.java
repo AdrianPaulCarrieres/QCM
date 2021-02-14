@@ -35,10 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         textViewIdentifiant = findViewById(R.id.identifiant);
         textViewMotDePasse = findViewById(R.id.mdp);
 
-        if(accesseurUtilisateur.getUtilisateurConnecte() != null){
-            //Passer au prochain écran -> pour le test on va faire la création
-            Intent intent = new Intent(this, MenuActivity.class);
-            startActivity(intent);
+        Utilisateur utilisateurConnectePeutEtreNull = accesseurUtilisateur.getUtilisateurConnecte();
+
+        if(utilisateurConnectePeutEtreNull != null){
+            naviguerVersMenu(utilisateurConnectePeutEtreNull.getNom());
         }
     }
 
@@ -53,10 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if(utilisateur.getMotDePasse().equals(motDePasse)){
             afficherToast("Utilisateur connecté");
-            Intent intent = new Intent(this, MenuActivity.class);
-           // Bundle bundle = new Bundle();
-            //intent.putExtras(bundle);
-            startActivity(intent);
+            naviguerVersMenu(utilisateur.getNom());
         } else {
             afficherToast("Mauvais mot de passe");
         }
@@ -71,5 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         Toast t = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         t.show();
         Log.i("login", "toasted message : " + message);
+    }
+
+    private void naviguerVersMenu(String nomUtilisateur){
+        //Passer au prochain écran -> pour le test on va faire la création
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("nomUtilisateur", nomUtilisateur);
+        startActivity(intent);
     }
 }
