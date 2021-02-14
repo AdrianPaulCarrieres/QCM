@@ -43,10 +43,7 @@ public class Score {
 
     @Override
     public String toString() {
-        return "Score{" +
-                "id_score=" + id_score +
-                ", nomUtilisateur='" + nomUtilisateur + '\'' +
-                ", score=" + score +
-                '}';
+        return "" + nomUtilisateur +
+                " : " + score;
     }
 }

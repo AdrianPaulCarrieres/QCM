@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,6 +64,7 @@ public class QCMActivity extends AppCompatActivity {
         pbar = findViewById(R.id.determinateBar);
         tps_restant = findViewById(R.id.temps_restant);
         scorej1 = findViewById(R.id.Scorejoueur1);
+
         scorej2 = findViewById(R.id.Scorejoueur2);
         textViewQuestion = findViewById(R.id.question);
 
