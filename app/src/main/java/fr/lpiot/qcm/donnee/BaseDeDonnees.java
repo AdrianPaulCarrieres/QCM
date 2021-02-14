@@ -28,9 +28,8 @@ public class BaseDeDonnees extends SQLiteOpenHelper{
 
     @Override
     public void onOpen(SQLiteDatabase db) {
-        /*String DELETE = "delete from utilisateur where 1 = 1";
-        db.execSQL(DELETE);
-         */
+        //String DELETE = "delete from token";
+        //db.execSQL(DELETE);
     }
 
     @Override

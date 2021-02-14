@@ -76,18 +76,16 @@ public class UtilisateurDAO {
 
     public Utilisateur getUtilisateurConnecte(){
         Utilisateur utilisateur = null;
-        String LISTER_UTILISATEUR = "SELECT * FROM utilisateur";
+        String LISTER_UTILISATEUR = "SELECT * FROM token";
         Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_UTILISATEUR, null);
 
-        int indexId_utilisateur = curseur.getColumnIndex("id_utilisateur");
-        int indexNom = curseur.getColumnIndex("nom");
-        int indexMotDePasse = curseur.getColumnIndex("mot_de_passe");
+        //int indexId_token = curseur.getColumnIndex("id_token");
+        int indexNomUtilisateur = curseur.getColumnIndex("nom_utilisateur");
 
         for(curseur.moveToFirst(); !curseur.isAfterLast(); curseur.moveToNext()){
-            int id_utilisateur = curseur.getInt(indexId_utilisateur);
-            String nom = curseur.getString(indexNom);
-            String motDePasse = curseur.getString(indexMotDePasse);
-            utilisateur = new Utilisateur(id_utilisateur, nom, motDePasse);
+            //int id_token = curseur.getInt(indexId_token);
+            String nom = curseur.getString(indexNomUtilisateur);
+            utilisateur = this.chercherUtilisateurParNom(nom);
         }
         curseur.close();
         return utilisateur;
