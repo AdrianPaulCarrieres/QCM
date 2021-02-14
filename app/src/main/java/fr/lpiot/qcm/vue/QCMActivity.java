@@ -187,6 +187,8 @@ public class QCMActivity extends AppCompatActivity {
             v.setBackgroundColor(v.getContext().getResources().getColor(color.red));
         }
 
+        toggleBouton(false);
+
         CountDownTimer timer = new CountDownTimer(1000, 1000) {
 
             @Override
@@ -196,10 +198,17 @@ public class QCMActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 v.setBackgroundColor(v.getContext().getResources().getColor(color.white));
+                toggleBouton(true);
                 nouvelleQuestion();
             }
         };
         timer.start();
+    }
+
+    private void toggleBouton(boolean etat){
+        for(int i = 0; i < boutons.length; i++){
+            boutons[i].setEnabled(etat);
+        }
     }
 
     private void afficherToast(String message) {
