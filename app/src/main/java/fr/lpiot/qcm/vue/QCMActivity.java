@@ -76,8 +76,7 @@ public class QCMActivity extends AppCompatActivity {
         accesseurScore = ScoreDAO.getInstance();
         accesseurUtilisateur = UtilisateurDAO.getInstance();
 
-        Bundle parametres = this.getIntent().getExtras();
-        nomUtilisateur = parametres.get("nomUtilisateur").toString();
+        nomUtilisateur = accesseurUtilisateur.getUtilisateurConnecte().getNom();
 
         joueur.setText(nomUtilisateur);
         boutons = new Button[]{
