@@ -99,4 +99,11 @@ public class UtilisateurDAO {
         query.bindString(1, utilisateur.getNom());
         query.execute();
     }
+
+    public void retirerToken(Utilisateur utilisateur){
+        SQLiteDatabase db = accesseurBaseDeDonnees.getWritableDatabase();
+        SQLiteStatement query = db.compileStatement("DELETE FROM token WHERE nom_utilisateur = ?");
+        query.bindString(1, utilisateur.getNom());
+        query.execute();
+    }
 }

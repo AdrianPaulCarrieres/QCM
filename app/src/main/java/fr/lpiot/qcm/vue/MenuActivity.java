@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,6 +22,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 
 import fr.lpiot.qcm.R;
+import fr.lpiot.qcm.donnee.UtilisateurDAO;
+import fr.lpiot.qcm.modele.Utilisateur;
 import fr.lpiot.qcm.ui.gallery.ScoreFragment;
 import fr.lpiot.qcm.ui.gallery.ScoreViewModel;
 
@@ -32,6 +35,7 @@ public class MenuActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     private String nomUtilisateur;
+    private UtilisateurDAO accesseurDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class MenuActivity extends AppCompatActivity {
         nomUtilisateur = parametres.get("nomUtilisateur").toString();
         afficherToast("Bienvenue " + nomUtilisateur);
 
+        accesseurDAO = UtilisateurDAO.getInstance();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -94,5 +99,13 @@ public class MenuActivity extends AppCompatActivity {
         Toast t = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         t.show();
         Log.i("login", "toasted message : " + message);
+    }
+
+    public void deconnecterUtilisteur(MenuItem item) {
+        Utilisateur utilisateur = accesseurDAO.chercherUtilisateurParNom(nomUtilisateur);
+        accesseurDAO.retirerToken(utilisateur);
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
