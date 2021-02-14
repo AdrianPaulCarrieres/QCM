@@ -54,6 +54,9 @@ public class QCMActivity extends AppCompatActivity {
     CountDownTimer timer;
 
     //Score
+    private int score = 0;
+
+    //Persistence
     private ScoreDAO accesseurScore;
     private UtilisateurDAO accesseurUtilisateur;
 
@@ -149,7 +152,6 @@ public class QCMActivity extends AppCompatActivity {
         } else {
             //Passer au score !
             Utilisateur utilisateur = accesseurUtilisateur.getUtilisateurConnecte();
-            int score = Integer.parseInt(scorej1.getText().toString());
             accesseurScore.ajouterScore(new Score(utilisateur.getNom(), score));
             this.finish();
         }
@@ -158,8 +160,9 @@ public class QCMActivity extends AppCompatActivity {
     public void choixReponse(View v) {
         if (((Button) v).getText() == questionActuelle.getBonneReponse()) {
             v.setBackgroundColor(v.getContext().getResources().getColor(color.green));
-            String score = "" + temps_timer;
-            scorej2.setText(score);
+            score += temps_timer;
+            String scoreAsString = "" + score;
+            scorej2.setText(scoreAsString);
         } else {
             v.setBackgroundColor(v.getContext().getResources().getColor(color.red));
         }
