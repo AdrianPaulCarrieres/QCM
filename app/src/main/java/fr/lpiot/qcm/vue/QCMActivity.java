@@ -66,14 +66,15 @@ public class QCMActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qcm);
         pbar = findViewById(R.id.determinateBar);
         tps_restant = findViewById(R.id.temps_restant);
-        scorej1 = findViewById(R.id.Scorejoueur1);
+
 
         scorej2 = findViewById(R.id.Scorejoueur2);
+
         textViewQuestion = findViewById(R.id.question);
 
         accesseurScore = ScoreDAO.getInstance();
         accesseurUtilisateur = UtilisateurDAO.getInstance();
-
+        scorej2.setText(accesseurUtilisateur.getUtilisateurConnecte().getNom());
         boutons = new Button[]{
                 findViewById(R.id.reponse1), findViewById(R.id.reponse2), findViewById(R.id.reponse3), findViewById(R.id.reponse4)
         };
