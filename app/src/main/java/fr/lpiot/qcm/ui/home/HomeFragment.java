@@ -3,6 +3,7 @@ package fr.lpiot.qcm.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,7 +40,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 //Commencer le quizz
                 Intent intent = new Intent(getActivity(), QCMActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, MenuActivity.ACTIVITE_QUIZZ);
             }
         });
         return root;

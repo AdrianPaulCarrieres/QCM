@@ -67,6 +67,7 @@ public class QCMActivity extends AppCompatActivity {
         textViewQuestion = findViewById(R.id.question);
 
         accesseurScore = ScoreDAO.getInstance();
+        accesseurUtilisateur = UtilisateurDAO.getInstance();
 
         boutons = new Button[]{
                 findViewById(R.id.reponse1), findViewById(R.id.reponse2), findViewById(R.id.reponse3), findViewById(R.id.reponse4)
