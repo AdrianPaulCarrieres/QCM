@@ -1,6 +1,5 @@
 package fr.lpiot.qcm.vue;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,8 +37,8 @@ public class QCMActivity extends AppCompatActivity {
 
     private ProgressBar pbar;
     private TextView tps_restant;
-    private TextView scorej1;
-    private TextView scorej2;
+    private TextView joueur;
+    private TextView scoreJ;
     private TextView textViewQuestion;
     private int temps_timer = 30;
 
@@ -67,14 +65,14 @@ public class QCMActivity extends AppCompatActivity {
         pbar = findViewById(R.id.determinateBar);
         tps_restant = findViewById(R.id.temps_restant);
 
-
-        scorej2 = findViewById(R.id.Scorejoueur2);
+        joueur = findViewById(R.id.joueur2);
+        scoreJ = findViewById(R.id.Scorejoueur2);
 
         textViewQuestion = findViewById(R.id.question);
 
         accesseurScore = ScoreDAO.getInstance();
         accesseurUtilisateur = UtilisateurDAO.getInstance();
-        scorej2.setText(accesseurUtilisateur.getUtilisateurConnecte().getNom());
+        joueur.setText(accesseurUtilisateur.getUtilisateurConnecte().getNom());
         boutons = new Button[]{
                 findViewById(R.id.reponse1), findViewById(R.id.reponse2), findViewById(R.id.reponse3), findViewById(R.id.reponse4)
         };
@@ -163,7 +161,7 @@ public class QCMActivity extends AppCompatActivity {
             v.setBackgroundColor(v.getContext().getResources().getColor(color.green));
             score += temps_timer;
             String scoreAsString = "" + score;
-            scorej2.setText(scoreAsString);
+            scoreJ.setText(scoreAsString);
         } else {
             v.setBackgroundColor(v.getContext().getResources().getColor(color.red));
         }
