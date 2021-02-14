@@ -36,48 +36,7 @@
         android:textColor="@color/purple_200"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/joueur1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/determinateBar"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/j1_img"
-        android:layout_toRightOf="@id/j1_img"
-        android:text="@string/joueur1"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-
-        android:id="@+id/j1_img"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/determinateBar"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/trump"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp" />
-
-    <TextView
-        android:id="@+id/Scorejoueur1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/joueur1"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_toEndOf="@id/j1_img"
-        android:layout_toRightOf="@id/j1_img"
-        android:text="@string/scorej1"
-        android:textColor="#FF1F11"
-        android:textSize="16sp"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/joueur2"
@@ -101,7 +60,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:src="@drawable/biden"
+        android:src="@drawable/profile"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp" />
 
@@ -123,7 +82,7 @@
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/joueur1"
+        android:layout_below="@id/joueur2"
         android:layout_centerHorizontal="true"
         android:layout_margin="50dp"
         android:gravity="center_horizontal"
