@@ -35,14 +35,6 @@ public class ScoreFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_score, container, false);
 
         accesseurScore = ScoreDAO.getInstance();
-        scoreActuel = accesseurScore.getDernierScore().getScore();
-
-        String message;
-        if(scoreActuel == 0){
-            message = "Jouez une partie pour voir votre score ici !";
-        } else {
-            message = "Votre dernier score est de : " + scoreActuel;
-        }
 
         ArrayList<Score> scores = accesseurScore.listerScores();
 
@@ -51,13 +43,6 @@ public class ScoreFragment extends Fragment {
         ListView listView = root.findViewById(R.id.listeScores);
         listView.setAdapter(itemsAdapter);
 
-        final TextView textViewDernierScore = root.findViewById(R.id.dernierScore);
-        scoreViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textViewDernierScore.setText(message);
-            }
-        });
         return root;
     }
 }
